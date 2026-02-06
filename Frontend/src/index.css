@@ -1,0 +1,62 @@
+@import '@siemens/ix/dist/siemens-ix/siemens-ix.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --theme-color-primary: #1976d2;
+  --theme-color-primary-hover: #1565c0;
+}
+
+/* Siemens IX Theme Configuration using data attributes (official approach) */
+html[data-ix-color-schema="light"] {
+  color-scheme: light;
+}
+
+html[data-ix-color-schema="dark"] {
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  font-family: 'Siemens Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--theme-color-std-bkg);
+  color: var(--theme-color-std-text);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* Custom Siemens IX overrides */
+.ix-card {
+  background-color: var(--theme-color-component-1);
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+}
+
+.ix-btn-primary {
+  background-color: var(--theme-color-primary);
+  color: var(--theme-color-inv-contrast-text);
+}
+
+.ix-btn-primary:hover {
+  background-color: var(--theme-color-primary-hover);
+}
+
+/* Smooth transitions for theme changes */
+* {
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+input, textarea, select, button {
+  transition: none;
+}
+
