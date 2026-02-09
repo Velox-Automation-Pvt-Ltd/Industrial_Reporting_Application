@@ -1,0 +1,222 @@
+@import 'tailwindcss';
+@import './layouts/container.css' layer(base);
+@import './layouts/sidebar.css';
+@import './layouts/header.css' layer(base);
+@import './override/reboot.css' layer(base);
+
+@plugin 'flowbite-react/plugin/tailwindcss';
+@source '../../.flowbite-react/class-list.json';
+@source '../../node_modules/flowbite-react/dist/esm/**/*.mjs';
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Base colors using VA White */
+  --background: 0 0% 100%; /* VA White #ffffff */
+  --foreground: 0 0% 11%; /* VA Black #1d1d1b */
+
+  /* Card colors */
+  --card: 0 0% 100%; /* White card */
+  --card-foreground: 0 0% 11%;
+
+  /* Primary = VA Red */
+  --secondary: 10 86% 49%; /* #e63312 */
+  --secondary-foreground: 0 0% 100%;
+
+  /* Secondary = VA Blue */
+  --primary: 206 68% 25%; /* #133F6D */
+  --primary-foreground: 0 0% 100%;
+
+  /* Accent = VA Teal */
+  --accent: 182 97% 31%; /* #03979d */
+  --accent-foreground: 0 0% 100%;
+
+  /* Success = VA Green */
+  --success: 74 68% 44%; /* #95c11f */
+  --success-foreground: 0 0% 100%;
+
+  /* Warning = VA Yellow */
+  --warning: 45 100% 49%; /* #fbba00 */
+  --warning-foreground: 0 0% 11%;
+
+  /* Error/Destructive = VA Orange */
+  --destructive: 21 86% 59%; /* #f07f3c */
+  --destructive-foreground: 0 0% 100%;
+
+  /* Muted using VA Light Gray */
+  --muted: 0 0% 82%; /* #D1D3D4 */
+  --muted-foreground: 0 0% 43%; /* #6D6F71 */
+
+  /* Borders and inputs */
+  --border: 0 0% 82%; /* VA Light Gray */
+  --input: 0 0% 82%;
+  --ring: 10 86% 49%; /* VA Red for focus rings */
+
+  /* Radius */
+  --radius: 0.5rem;
+}
+
+.dark {
+  /* Dark mode using VA Black and adjusted colors */
+  --background: 0 0% 11%; /* VA Black #1d1d1b */
+  --foreground: 0 0% 98%; /* Near white */
+
+  --card: 0 0% 15%;
+  --card-foreground: 0 0% 98%;
+
+  /* Keep primary VA Red bright in dark mode */
+  --primary: 10 86% 49%;
+  --primary-foreground: 0 0% 100%;
+
+  /* VA Blue adjusted for dark mode */
+  --secondary: 206 68% 35%;
+  --secondary-foreground: 0 0% 100%;
+
+  /* VA Teal adjusted */
+  --accent: 182 97% 41%;
+  --accent-foreground: 0 0% 100%;
+
+  /* VA Green adjusted */
+  --success: 74 68% 54%;
+  --success-foreground: 0 0% 11%;
+
+  /* VA Yellow adjusted */
+  --warning: 45 100% 59%;
+  --warning-foreground: 0 0% 11%;
+
+  /* VA Orange adjusted */
+  --destructive: 21 86% 59%;
+  --destructive-foreground: 0 0% 100%;
+
+  /* Muted using VA Gray */
+  --muted: 0 0% 43%; /* #6D6F71 */
+  --muted-foreground: 0 0% 82%;
+
+  --border: 0 0% 25%;
+  --input: 0 0% 25%;
+  --ring: 10 86% 49%;
+}
+
+@theme {
+  --font-*: initial;
+  --font-sans: 'Plus Jakarta Sans', sans-serif;
+
+  /* VA Color Palette */
+  --color-secondary: #e63312; /* VA Red */
+  --color-primary: #133f6d; /* VA Blue */
+  --color-info: #03979d; /* VA Teal */
+  --color-success: #95c11f; /* VA Green */
+  --color-warning: #fbba00; /* VA Yellow */
+  --color-error: #f07f3c; /* VA Orange */
+  --color-accent: #03979d; /* VA Teal */
+
+  /* Neutral colors from VA palette */
+  --color-dark: #1d1d1b; /* VA Black */
+  --color-gray: #6d6f71; /* VA Gray */
+  --color-light: #d1d3d4; /* VA Light Gray */
+  --color-white: #ffffff; /* VA White */
+
+  --shadow-md: 0 2px 6px rgba(230, 51, 18, 0.1); /* VA Red tint */
+  --shadow-lg: 0 1rem 3rem rgba(19, 63, 109, 0.175); /* VA Blue tint */
+
+  --radius-sm: 7px;
+  --radius-md: 9px;
+  --radius-lg: 18px;
+}
+
+@utility container {
+  margin-inline: auto;
+  padding-inline: 20px;
+}
+
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
+
+@apply bg-white text-black;
+
+@utility container {
+  @apply max-w-[1600px];
+}
+
+@utility sidebar-link {
+  @apply !h-12 !rounded-full !rounded-s-none text-sm !font-medium;
+}
+
+@utility dropdown {
+  @apply shadow-md bg-white dark:bg-dark relative rounded-sm;
+}
+
+@utility card-title {
+  @apply text-lg font-semibold text-dark dark:text-white;
+}
+
+@utility sidebar-dropdown {
+  & .drop-items {
+    @apply text-dark/60 dark:text-white/50 group-hover/link:text-dark dark:group-hover/link:text-white;
+  }
+}
+
+@utility form-control {
+  & input {
+    @apply border border-gray-300 bg-transparent w-full text-sm rounded-sm;
+  }
+
+  & input:focus {
+    @apply border-primary outline-hidden shadow-none ring-offset-0 ring-transparent;
+  }
+}
+
+@layer components {
+  button {
+    @apply !cursor-pointer;
+  }
+
+  /*heading text color*/
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply text-dark dark:text-white font-semibold;
+  }
+}
+
+/* ⚠️ Warning Blink (yellow tones) */
+@keyframes blink-warning {
+  0%,
+  100% {
+    background-color: #fef9c3;
+  } /* yellow-100 */
+  50% {
+    background-color: #fcd34d;
+  } /* yellow-300 */
+}
+
+.blink-warning {
+  animation: blink-warning 0.8s infinite;
+  color: #78350f; /* yellow-900 text for readability */
+}
+
+/* ❌ Error Blink (rose tones) */
+@keyframes blink-error {
+  0%,
+  100% {
+    background-color: #ffe4e6;
+  } /* rose-200 */
+  50% {
+    background-color: #fecdd3;
+  } /* rose-500 */
+}
+
+.blink-error {
+  animation: blink-error 0.8s infinite;
+  color: #7f1d1d; /* rose-900 text for readability */
+}
